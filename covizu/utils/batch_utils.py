@@ -135,6 +135,8 @@ def make_beadplots(by_lineage, args, callback=None, t0=None, txtfile='minor_line
     # launch MPI job across minor lineages
     if callback:
         callback("start MPI on minor lineages")
+
+    # FIXME: make path to clustering.py more robust?
     cmd = ["mpirun", "--machinefile", args.machine_file, "python3", "covizu/clustering.py",
            recode_file, txtfile,  # positional arguments <JSON file>, <str>
            "--mode", "flat",
@@ -172,16 +174,13 @@ def make_beadplots(by_lineage, args, callback=None, t0=None, txtfile='minor_line
     if callback:
         callback("Parsing output files")
     result = []
-    for lineage in by_lineage:
+    for lineage, rdata in recoded.items():
         # import trees
         lineage_name = lineage.replace('/', '_')  # issue #297
         outfile = open('data/{}.nwk'.format(lineage_name))
         trees = Phylo.parse(outfile, 'newick')  # note this returns a generator
 
-        # import label map
-        with open('data/{}.labels.csv'.format(lineage_name)) as handle:
-            label_dict = import_labels(handle)
-
+        label_dict = rdata['labels']
         if len(label_dict) == 1:
             # handle case of only one variant
             # lineage only has one variant, no meaningful tree
