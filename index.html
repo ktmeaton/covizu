@@ -202,22 +202,9 @@
             <div class="clicker" title="Save sankey diagram as SVG" onclick="export_sankey_svg();">&nbsp;&nbsp;SVG&nbsp;&nbsp;</div>
             <div title="Sankey help" onclick="$('#help-sankey').dialog('open');" style="cursor: help">&#128304;</div> 
 
-            <div class="edge-cuttoff">
-              <label style="vertical-align: middle;" for="vedge-slider">Bootstrap cutoff:&nbsp;&nbsp;</label>
-              <div id="bootstrap-left-arrow" class="arrow">
-                <div style="transform: translateY(-25%);" class="larrow">&#8249;</div>
-              </div>
-              <div id="bootstrap-slider">
-                <div id="bootstrap-custom-handle" class="ui-slider-handle"></div>
-              </div>
-              <div id="bootstrap-right-arrow" class="arrow">
-                <div style="transform: translateY(-25%);" class="rarrow">&#8250;</div>
-              </div>
-            </div>            
-
             <label class="expand" style="vertical-align: middle;">&nbsp;&nbsp;Unsampled:&nbsp;</label>
             <label class="switch">
-              <input type="checkbox" id="sankey-unsampled-option" checked>
+              <input type="checkbox" id="sankey-unsampled-option" checked onclick="export_sankey_svg();">
               <span class="slider round"></span>
             </label>
             <label class="expand" style="vertical-align: middle;">&nbsp;&nbsp;Community Transmission:&nbsp;</label>

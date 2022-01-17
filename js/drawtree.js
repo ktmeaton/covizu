@@ -673,6 +673,7 @@ function click_cluster(d, cluster_info) {
     d3.selectAll("text.clicked").attr('class', null);
     
   beadplot(d.cluster_idx);
+  draw_sankey(d.cluster_idx);
 
   // reset all rectangles to high transparency
   if ($('#search-input').val() === "") {
@@ -762,6 +763,7 @@ function click_cluster(d, cluster_info) {
     var working_bead = select_bead.nodes()[0];
     working_bead.scrollIntoView({block: "center"});
     update_table_individual_bead_front(d3.select(working_bead).datum());
+
   }
   draw_cluster_box(d3.select(cluster_info));
 }

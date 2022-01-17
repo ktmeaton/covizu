@@ -329,6 +329,7 @@ function update_table_individual_bead_front(bead) {
   draw_halo_front(bead);
   gentable(bead);
   draw_region_distribution(tabulate(bead.region));
+  console.log("gen_details_table 3")
   gen_details_table(bead);
 }
 
@@ -426,6 +427,7 @@ function select_working_bead(bead_id_to_accession, curr_bead) {
   var working_bead = current_bead.nodes()[0];
   current_bead.raise();
   working_bead.scrollIntoView({block: "center"});
+  console.log("select_working_bead");
   update_table_individual_bead_front(d3.select(working_bead).datum());
 }
 
