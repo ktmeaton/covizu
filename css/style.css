@@ -707,3 +707,55 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*** Sankey ***/
+
+.sankey-content {
+  height: 79vh;
+  overflow: scroll;
+  scrollbar-track-color: white;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sankey-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal scrollbar for beadplot */
+#sankey-hscroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 16px;
+}
+
+#sankey-inner-hscroll {
+  height: 16px;
+}
+
+div#bootstrap-slider {
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}

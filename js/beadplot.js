@@ -421,6 +421,7 @@ function create_selection(selected_obj) {
     .attr("class", "not_SelectedBead");
 
   selected_obj.attr("class", "SelectedBead");
+
 }
 
 
@@ -653,6 +654,7 @@ function expand() {
  * @param {Number} cid:  integer index of cluster to draw as beadplot
  */
  function beadplot(cid) {
+
   // Update global cindex for SVG and NWK filenames
   cindex = cid;
   
@@ -1216,6 +1218,7 @@ function region_to_string(my_regions) {
  * @param obj: JS object or an array of JS Objects
  */
 function gen_details_table(obj) {
+
   var details = [];
 
   // Check for a list of samples

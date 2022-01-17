@@ -136,7 +136,8 @@ $.getJSON("data/countries.json", function(data) {
 
 
 var clusters, beaddata, tips,
-    accn_to_cid, cindex, lineage_to_cid;
+    accn_to_cid, cindex, lineage_to_cid,
+    sankey_data;
 var map_cidx_to_id = [], id_to_cidx = [];
 
 // load cluster data from server
@@ -165,6 +166,11 @@ req.done(function() {
   cindex = node.__data__.cluster_idx;
   d3.select(node).attr("class", "clicked");
   window.addEventListener("resize", expand, true);
+
+  // Sankey Diagram
+  sankey_data = get_sankey_data(cindex);
+  draw_sankey(sankey_data);
+
 
   /*
   rect = d3.selectAll("#svg-cluster > svg > g > circle");
@@ -235,6 +241,22 @@ req.done(function() {
     move_arrow();
     slider_update();
   }
+
+  // Changes the value of the bootstrap slider and triggers a change event
+  function move_bootstrap_slider(direction) {
+    var slider = $("#bootstrap-slider");
+
+    if (direction === "LEFT")
+      slider.slider("value", slider.slider("value") - slider.slider("option", "step"))
+    else 
+      slider.slider("value", slider.slider("value") + slider.slider("option", "step"))
+    
+    $("#bootstrap-custom-handle").text( slider.slider( "value" ) );
+    move_arrow();
+    slider_update();
+  }  
+
+
 
   disable_buttons();
 
@@ -536,6 +558,19 @@ req.done(function() {
     move_slider("RIGHT");
   });
 
+  // Moves the bootstrap slider to the left/right when the arrow buttons are clicked
+  /*
+  $('#bootstrap-left-arrow').click(function() {
+    $("#bootstrap-custom-handle").addClass("ui-slider-active")
+    move_bootstrap_slider("LEFT");
+  });
+
+  $('#bootstrap-right-arrow').click(function() {
+    $("#bootstrap-custom-handle").addClass("ui-slider-active")
+    move_bootstrap_slider("RIGHT");
+  });
+  */
+
   // Adds/Removes the selected/active state of the slider depending on where the user clicks
   $(document).on('mousedown', function(e) {
     if (e.target.matches("div.larrow")) 
@@ -674,4 +709,24 @@ function export_csv() {
   csvFile = csvFile + "\n" + lineage_info.join("\n");
   blob = new Blob([csvFile], {type: "text/csv"});
   saveAs(blob, "lineage_stats.csv");
+}
+
+function export_sankey_json() {
+  console.log(sankey_data);
+
+// convert graph to JSON
+//var graph_json = JSON.stringify(graph, null, 2);
+//blob = new Blob([graph_json], {type: "text/json"});
+//saveAs(blob, "graph.json");
+
+}
+
+function export_sankey_svg() {
+  console.log(sankey_data);
+
+// convert graph to JSON
+//var graph_json = JSON.stringify(graph, null, 2);
+//blob = new Blob([graph_json], {type: "text/json"});
+//saveAs(blob, "graph.json");
+
 }

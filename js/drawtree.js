@@ -723,9 +723,15 @@ function click_cluster(d, cluster_info) {
     gentable(d);
     draw_region_distribution(d.allregions);
     gen_details_table(beaddata[d.cluster_idx].points);  // update details table with all samples
-    
+
+    // Draw Sankey Diagram: Is this the right place?
+    sankey_data = get_sankey_data(d.cluster_idx);
+    draw_sankey(sankey_data);
+
     // FIXME: this is the same div used for making barplot SVG
     $("#text-node").html(`Number of cases: ${d.count}<br/>Number of variants: ${d.varcount}<br/>`);
+
+
   }
   else {
     // If the selected cluster is a SelectedCluster, then the search_results need to be updated to point to the first bead in the cluster

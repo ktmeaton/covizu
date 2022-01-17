@@ -14,6 +14,7 @@
   <script src="js/d3-scale.js"></script>
   <script src="js/FileSaver.js"></script>
   <script src="js/d3-save-svg.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>  
 </head>
 
 <body>
@@ -161,7 +162,7 @@
           <div class="floattitle" id="beadplot-title">
             <div>Beadplot</div>
             <div class="clicker" title="Download beadplot as tree" onclick="save_beadplot();">&nbsp;&nbsp;NWK&nbsp;&nbsp;</div>
-            <div class="clicker" title="Save beadplot as SVG" onclick="export_svg();">&nbsp;&nbsp;SVG&nbsp;&nbsp;</div>
+            <div class="clicker" title="Save beadplot as SVG" onclick="export_svg();">&nbsp;&nbsp;SVG&nbsp;&nbsp;</div>          
             <div title="Beadplot help" onclick="$('#help-beadplot').dialog('open');" style="cursor: help">&#128304;</div>
 
             <div class="edge-cuttoff">
@@ -192,6 +193,44 @@
         <div id="beadplot-vscroll">
           <div id="inner-vscroll"></div>
         </div>
+
+        <!-- Sankey Diagram Here! -->
+        <div class="middlebox">
+          <div class="floattitle" id="beadplot-title">
+            <div>Sankey Diagram</div>
+            <div class="clicker" title="Download sankey diagram as JSON" onclick="export_sankey_json();">&nbsp;&nbsp;JSON&nbsp;&nbsp;</div>
+            <div class="clicker" title="Save sankey diagram as SVG" onclick="export_sankey_svg();">&nbsp;&nbsp;SVG&nbsp;&nbsp;</div>
+            <div title="Sankey help" onclick="$('#help-sankey').dialog('open');" style="cursor: help">&#128304;</div> 
+
+            <div class="edge-cuttoff">
+              <label style="vertical-align: middle;" for="vedge-slider">Bootstrap cutoff:&nbsp;&nbsp;</label>
+              <div id="bootstrap-left-arrow" class="arrow">
+                <div style="transform: translateY(-25%);" class="larrow">&#8249;</div>
+              </div>
+              <div id="bootstrap-slider">
+                <div id="bootstrap-custom-handle" class="ui-slider-handle"></div>
+              </div>
+              <div id="bootstrap-right-arrow" class="arrow">
+                <div style="transform: translateY(-25%);" class="rarrow">&#8250;</div>
+              </div>
+            </div>            
+
+            <label class="expand" style="vertical-align: middle;">&nbsp;&nbsp;Unsampled:&nbsp;</label>
+            <label class="switch">
+              <input type="checkbox" id="sankey-unsampled-option" checked>
+              <span class="slider round"></span>
+            </label>
+            <label class="expand" style="vertical-align: middle;">&nbsp;&nbsp;Community Transmission:&nbsp;</label>
+            <label class="switch">
+              <input type="checkbox" id="sankey-community-option" checked>
+              <span class="slider round"></span>
+            </label>            
+
+          </div>          
+          <div class="sankey-content" id="svg-sankey"></div>
+        </div>   
+        
+        <!-- End Sankey Diagram -->
       </div>
     </div>
 
@@ -402,8 +441,9 @@
   </footer>
 
   <script src="js/beadplot.js"></script>
+  <script src="js/drawsankey.js"></script>   
   <script src="js/utils.js"></script>
-  <script src="js/drawtree.js"></script>
+  <script src="js/drawtree.js"></script> 
   <script src="js/phylo.js"></script>
   <script src="js/search.js"></script>
   <script src="js/gisaid/gisaid.js?random=1"></script>
