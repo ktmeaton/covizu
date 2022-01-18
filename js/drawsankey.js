@@ -10,14 +10,12 @@
 
   // Extract the cluster based on the current index
   var cluster = clusters[cindex];
-  console.log(cluster);
 
   // Initialize sankey graph
   const graph = {
     "lineage"    : "",
     "label"      : [],
     "color"      : [],
-    "connection" : {},
     "link": {
       "source": [],
       "target": [],
@@ -54,8 +52,6 @@
 
   // Iterate through all edges (connections/migrations)
   for (edge of cluster.edges) {
-
-    console.log("edge", edge)
 
     // Extract statistics and metadata for the edge
     var source_node = edge[0];
@@ -101,8 +97,6 @@
     if(!target_node.includes("unsampled")){
 
       sequences = cluster.nodes[target_node];
-
-      console.log(sequences)      
 
       // We are allowing multiple target locations
       for (seq of sequences){
@@ -179,9 +173,9 @@
  * Draw the sankey diagram
  * @param {Object} graph:  pre-computed sankey graph data
  */
- function draw_sankey(graph) {
+ function draw_sankey() {
 
-  console.log(graph);
+  graph = get_sankey_data(cindex);
 
   // Select Sankey Object
   svg_sankey = document.getElementById('svg-sankey');

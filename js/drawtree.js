@@ -673,7 +673,7 @@ function click_cluster(d, cluster_info) {
     d3.selectAll("text.clicked").attr('class', null);
     
   beadplot(d.cluster_idx);
-  draw_sankey(d.cluster_idx);
+  draw_sankey();
 
   // reset all rectangles to high transparency
   if ($('#search-input').val() === "") {
@@ -726,8 +726,7 @@ function click_cluster(d, cluster_info) {
     gen_details_table(beaddata[d.cluster_idx].points);  // update details table with all samples
 
     // Draw Sankey Diagram: Is this the right place?
-    sankey_data = get_sankey_data(d.cluster_idx);
-    draw_sankey(sankey_data);
+    draw_sankey();
 
     // FIXME: this is the same div used for making barplot SVG
     $("#text-node").html(`Number of cases: ${d.count}<br/>Number of variants: ${d.varcount}<br/>`);

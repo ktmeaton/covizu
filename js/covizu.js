@@ -168,8 +168,7 @@ req.done(function() {
   window.addEventListener("resize", expand, true);
 
   // Sankey Diagram
-  sankey_data = get_sankey_data(cindex);
-  draw_sankey(sankey_data);
+  draw_sankey();
 
 
   /*
@@ -712,21 +711,21 @@ function export_csv() {
 }
 
 function export_sankey_json() {
-  console.log(sankey_data);
 
-// convert graph to JSON
-//var graph_json = JSON.stringify(graph, null, 2);
-//blob = new Blob([graph_json], {type: "text/json"});
-//saveAs(blob, "graph.json");
+  // convert graph to JSON
+  var graph_json = JSON.stringify(sankey_data, null, 2);
+  blob = new Blob([graph_json], {type: "text/json"});
+  saveAs(blob, "graph.json");
 
 }
 
+
 function export_sankey_svg() {
-  console.log(sankey_data);
 
-// convert graph to JSON
-//var graph_json = JSON.stringify(graph, null, 2);
-//blob = new Blob([graph_json], {type: "text/json"});
-//saveAs(blob, "graph.json");
+  var config = {filename: clusters[cindex].lineage};  
 
+  // Create a duplicate of the sankey diagram
+  var svg_sankey = d3.select('#svg-sankey>svg').clone(true);
+  d3_save_svg.save(svg_sankey, config);
+  svg_sankey.remove()
 }
