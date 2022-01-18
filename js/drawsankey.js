@@ -7,6 +7,7 @@
   // Check for parameters in the Sankey GUI Panel
   var unsampled              = document.getElementById("sankey-unsampled-option").checked;
   var community_transmission = document.getElementById("sankey-community-option").checked;
+  var multiple_sources       = document.getElementById("sankey-multiple-source-option").checked;  
 
   // Extract the cluster based on the current index
   var cluster = clusters[cindex];
@@ -81,8 +82,10 @@
     if(!source_node.includes("unsampled")){
 
       sequences = cluster.nodes[source_node];
-      // We are not allowing multiple source locations
-      if (sequences.length > 1){ continue; }
+
+      // Shuold we include multiple source locations?
+      if (multiple_sources == false && sequences.length > 1){ continue; }
+      //if (sequences.length > 1){ continue; }
 
       collection_date = sequences[0][0];
       seq_name        = sequences[0][2];
