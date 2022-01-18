@@ -735,7 +735,7 @@ input:checked + .slider:before {
   display: none;
 }
 
-/* Horizontal scrollbar for beadplot */
+/* Horizontal scrollbar for sankey */
 #sankey-hscroll {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -744,6 +744,18 @@ input:checked + .slider:before {
 
 #sankey-inner-hscroll {
   height: 16px;
+}
+
+/* Vertical scrollbar for sankey */
+#sankey-vscroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 20px;
+  height: 79vh;
+}
+
+#sankey-innner-vscroll {
+  width: 20px;
 }
 
 div#bootstrap-slider {

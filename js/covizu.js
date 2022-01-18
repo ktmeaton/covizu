@@ -722,10 +722,6 @@ function export_sankey_json() {
 
 function export_sankey_svg() {
 
-  var config = {filename: clusters[cindex].lineage};  
+  // TO BE DONE
 
-  // Create a duplicate of the sankey diagram
-  var svg_sankey = d3.select('#svg-sankey>svg').clone(true);
-  d3_save_svg.save(svg_sankey, config);
-  svg_sankey.remove()
 }

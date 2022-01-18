@@ -114,8 +114,8 @@
             to
             <input id="end-date" class="dates"
                       placeholder="End">
-            <span onclick="$('#help-search').dialog('open');" style="cursor: help">&#128304;</span>
-          </div>
+            <span onclick="$('#help-search').dialog('open');" style="cursor: help">&#128304;</span>          
+          </div>          
           <br/>
           
           <div id="navigation" style="padding-top: 5px">
@@ -136,7 +136,7 @@
             <span id="error_message"></span>
           </div>
         </div>
-        <!-- </span> -->
+        <!-- </span> -->            
       </div>
     
       <div class="tree-beadplot">
@@ -197,7 +197,7 @@
         <!-- Sankey Diagram Here! -->
         <div class="middlebox">
           <div class="floattitle" id="beadplot-title">
-            <div>Sankey Diagram</div>
+            <div>Sankey</div>
             <div class="clicker" title="Download sankey diagram as JSON" onclick="export_sankey_json();">&nbsp;&nbsp;JSON&nbsp;&nbsp;</div>
             <div class="clicker" title="Save sankey diagram as SVG" onclick="export_sankey_svg();">&nbsp;&nbsp;SVG&nbsp;&nbsp;</div>
             <div title="Sankey help" onclick="$('#help-sankey').dialog('open');" style="cursor: help">&#128304;</div> 
@@ -216,11 +216,16 @@
             <label class="sankey-switch">
               <input type="checkbox" id="sankey-multiple-source-option" checked onclick="draw_sankey();">
               <span class="slider round"></span>
-            </label>                          
+            </label>
+            <label style="vertical-align: middle;">&nbsp;&nbsp; Country View:&nbsp;</label>
+            <label class="sankey-switch">
+              <input type="checkbox" id="sankey-country-view" onclick="draw_sankey();">
+              <span class="slider round"></span>
+            </label>                                               
 
           </div>          
           <div class="sankey-content" id="svg-sankey"></div>
-        </div>   
+        </div>      
         
         <!-- End Sankey Diagram -->
       </div>
